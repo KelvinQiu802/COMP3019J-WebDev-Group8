@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -13,9 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
-import { isBlank } from '../../../utils/stringUtil'; 
-import { useRouter } from 'next/navigation'; 
-import { Alert } from '@mui/material'; 
+import { isBlank } from '../../../utils/stringUtil';
+import { useRouter } from 'next/navigation';
+import { Alert } from '@mui/material';
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -71,7 +71,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs'>
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -84,23 +84,23 @@ export default function SignUp() {
           <Avatar sx={{ m: 1, bgcolor: green[200] }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
           <Box
-            component='form'
+            component="form"
             onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
             <TextField
-              margin='normal'
+              margin="normal"
               required
               fullWidth
-              id='email'
-              label='Username'
-              name='userName'
-              color='success'
+              id="email"
+              label="Username"
+              name="userName"
+              color="success"
               onChange={handleInfoChange}
               onBlur={handleNameCheck} // Trigger the username availability check
               value={userInfo.userName}
@@ -108,27 +108,27 @@ export default function SignUp() {
             />
             {hasSameName && (
               // Show an error message if the chosen username is already in use
-              <Alert severity='error' sx={{ width: 400 }}>
+              <Alert severity="error" sx={{ width: 400 }}>
                 The user name has been used.
               </Alert>
             )}
             <TextField
-              margin='normal'
+              margin="normal"
               required
               fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              color='success'
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              color="success"
               onChange={handleInfoChange}
               value={userInfo.password}
-              autoComplete='current-password'
+              autoComplete="current-password"
             />
             <Button
-              type='submit'
+              type="submit"
               fullWidth
-              variant='contained'
+              variant="contained"
               disabled={btnDisabled || hasSameName}
               sx={{
                 mt: 3,
@@ -144,8 +144,8 @@ export default function SignUp() {
             <Grid container>
               <Grid item>
                 <Link
-                  href='/login'
-                  variant='body2'
+                  href="/login"
+                  variant="body2"
                   sx={{ color: green[800], textDecorationColor: green[800] }}
                 >
                   {'Already have an account? Login'}

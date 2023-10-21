@@ -1,7 +1,6 @@
 const STATUS = {
-    WANNA: 'WANNA',
-    WATCHED: 'WATCHED',
-  };
-  
-  export default STATUS;
-  
+  WANNA: 'WANNA',
+  WATCHED: 'WATCHED',
+};
+
+export default STATUS;

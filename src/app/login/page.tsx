@@ -1,20 +1,20 @@
-"use client";
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { green } from "@mui/material/colors";
-import { isBlank } from "../../../utils/stringUtil"; 
-import { useRouter } from "next/navigation";
-import { Alert } from "@mui/material";
+'use client';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { green } from '@mui/material/colors';
+import { isBlank } from '../../../utils/stringUtil';
+import { useRouter } from 'next/navigation';
+import { Alert } from '@mui/material';
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -29,8 +29,8 @@ export default function LogIn() {
 
   // Define the state variable for user information
   const [userInfo, setUserInfo] = React.useState({
-    userName: "",
-    password: "",
+    userName: '',
+    password: '',
   });
 
   // Handle changes in input field values
@@ -47,26 +47,26 @@ export default function LogIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Send a POST request to the login API endpoint
-    const result = await fetch("http://localhost:7070/api/users/login", {
-      method: "POST",
+    const result = await fetch('http://localhost:7070/api/users/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(userInfo),
     });
     setUnautherized(false);
     if (result.status == 200) {
       // If the login is successful, store the user's name and navigate to the home page
-      localStorage.setItem("userName", userInfo.userName);
-      router.push("/");
+      localStorage.setItem('userName', userInfo.userName);
+      router.push('/');
     } else if (result.status == 401) {
       // If the login fails due to incorrect credentials, show an error message and reset the form
       setUnautherized(true);
       setBtnDisabled(true);
-      setUserInfo({ userName: "", password: "" });
+      setUserInfo({ userName: '', password: '' });
     } else {
       // Handle other error cases
-      alert("Login failed, please try again.");
+      alert('Login failed, please try again.');
     }
   };
 
@@ -77,9 +77,9 @@ export default function LogIn() {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: green[200] }}>
@@ -135,7 +135,7 @@ export default function LogIn() {
                 mt: 3,
                 mb: 2,
                 backgroundColor: green[400],
-                ":hover": {
+                ':hover': {
                   backgroundColor: green[600],
                 },
               }}
