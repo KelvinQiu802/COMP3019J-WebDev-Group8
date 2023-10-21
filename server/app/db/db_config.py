@@ -1,0 +1,6 @@
+dialect = 'mysql'
+user_name = 'root'
+password = ''
+host = 'localhost'
+port = '3306'
+database = 'flask'
