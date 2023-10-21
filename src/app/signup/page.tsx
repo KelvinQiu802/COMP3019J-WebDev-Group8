@@ -16,6 +16,7 @@ import { green } from '@mui/material/colors';
 import { isBlank } from '../../../utils/stringUtil';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mui/material';
+import API_HOST from '../../../utils/host';
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -47,7 +48,7 @@ export default function SignUp() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Send a POST request to the user creation API endpoint
-    const result = await fetch('http://localhost:7070/api/users', {
+    const result = await fetch(`${API_HOST}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +65,8 @@ export default function SignUp() {
 
   // Check if the chosen username is already in use
   const handleNameCheck = async () => {
-    const users = await fetch('http://localhost:7070/api/users');
+    console.log(`${API_HOST}/users`);
+    const users = await fetch(`${API_HOST}/users/`);
     const userList = await users.json();
     setHasSameName(userList.includes(userInfo.userName));
   };

@@ -15,6 +15,7 @@ import { green } from '@mui/material/colors';
 import { isBlank } from '../../../utils/stringUtil';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mui/material';
+import API_HOST from '../../../utils/host';
 
 // Create a Material-UI theme
 const theme = createTheme();
@@ -47,7 +48,7 @@ export default function LogIn() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Send a POST request to the login API endpoint
-    const result = await fetch('http://localhost:7070/api/users/login', {
+    const result = await fetch(`${API_HOST}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
