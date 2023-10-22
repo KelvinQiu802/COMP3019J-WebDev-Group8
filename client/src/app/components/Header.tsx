@@ -1,7 +1,7 @@
-"use client"
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import style from './header.module.css';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -22,7 +22,7 @@ function Header() {
   }, [path]);
 
   return (
-    <div className={style.header} id='head'>
+    <div className={style.header} id="head">
       <div className={style.content}>
         <div className={style.left} onClick={() => router.push('/')}>
           <h1>Duck Movies</h1>
@@ -30,7 +30,7 @@ function Header() {
         {isLogin ? (
           <div className={style.rightlogined}>
             <p>{`Hi, ${localStorage.getItem('userName')}`}</p>
-            <Link href='/bookmark'>Bookmarks</Link>
+            <Link href="/bookmark">Bookmarks</Link>
             <span onClick={handleLogout}>Logout</span>
           </div>
         ) : (
