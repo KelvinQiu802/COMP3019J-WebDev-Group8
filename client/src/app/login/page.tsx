@@ -1,5 +1,6 @@
 'use client';
-import * as React from 'react';
+
+import { useState, ChangeEvent, FormEvent } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -24,18 +25,18 @@ export default function LogIn() {
   // Use the useRouter provided by next.js for page navigation
   const router = useRouter();
 
-  // Define state variables using React.useState
-  let [unautherized, setUnautherized] = React.useState(false);
-  let [btnDisabled, setBtnDisabled] = React.useState(true);
+  // Define state variables using useState
+  let [unautherized, setUnautherized] = useState(false);
+  let [btnDisabled, setBtnDisabled] = useState(true);
 
   // Define the state variable for user information
-  const [userInfo, setUserInfo] = React.useState({
+  const [userInfo, setUserInfo] = useState({
     userName: '',
     password: '',
   });
 
   // Handle changes in input field values
-  const handleInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInfoChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInfo((prev) => {
       // Update the user information and check if the "Log In" button should be disabled
       const updated = { ...prev, [e.target.name]: e.target.value };
@@ -45,7 +46,7 @@ export default function LogIn() {
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Send a POST request to the login API endpoint
     const result = await fetch(`${API_HOST}/users/login`, {

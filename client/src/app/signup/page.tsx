@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,17 +25,17 @@ export default function SignUp() {
   const router = useRouter();
 
   // Define state variables for button and name availability
-  let [btnDisabled, setBtnDisabled] = React.useState(true);
-  let [hasSameName, setHasSameName] = React.useState(false);
+  let [btnDisabled, setBtnDisabled] = useState(true);
+  let [hasSameName, setHasSameName] = useState(false);
 
   // Define the state variable for user information
-  const [userInfo, setUserInfo] = React.useState({
+  const [userInfo, setUserInfo] = useState({
     userName: '',
     password: '',
   });
 
   // Handle changes in input field values
-  const handleInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInfoChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUserInfo((prev) => {
       // Update user information and check if the "Sign Up" button should be disabled
       const updated = { ...prev, [e.target.name]: e.target.value };
@@ -45,7 +45,7 @@ export default function SignUp() {
   };
 
   // Handle form submission
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Send a POST request to the user creation API endpoint
     const result = await fetch(`${API_HOST}/users`, {
