@@ -22,9 +22,12 @@ $ python3 app/app.py
 ## API Endpoints
 
 ```
-Endpoint          Methods  Rule
-----------------  -------  -----------------------
-user.all_users    GET      /api/users/
-user.create_user  POST     /api/users/
-user.login_auth   POST     /api/users/login
+Endpoint            Methods  Rule
+------------------  -------  -----------------------
+movies.get_by_page  GET      /api/movies/
+movies.get_count    GET      /api/movies/count
+movies.get_movie    GET      /api/movies/<int:id>
+users.all_users     GET      /api/users/
+users.create_user   POST     /api/users/
+users.login_auth    POST     /api/users/login
 ```
