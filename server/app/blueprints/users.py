@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, Response
 from models.users import Users
 from extentions import db
 
-users = Blueprint('user', __name__)
+users = Blueprint('users', __name__)
 
 
 """Get all userName in the db
