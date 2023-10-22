@@ -1,0 +1,81 @@
+.header {
+  height: 45px;
+  text-align: center;
+  line-height: 40px;
+  background-color: #eff4f0;
+}
+
+.content {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  line-height: 46px;
+  justify-content: space-around;
+}
+
+.left {
+  display: flex;
+  user-select: none;
+  gap: 15px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+.content h1 {
+  font-size: 30px;
+  font-weight: 300;
+  font-family: 'Kalam', cursive;
+  position: relative;
+  top: 2px;
+}
+
+.icon {
+  position: relative;
+  top: 4px;
+}
+
+.right {
+  color: #05521c;
+  display: flex;
+  font-size: 18px;
+  gap: 8px;
+}
+
+.rightlogined {
+  color: #075b20;
+  display: flex;
+  font-size: 18px;
+  gap: 28px;
+}
+
+.rightlogined p {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.rightlogined span {
+  cursor: pointer;
+}
+
+.rightlogined span:hover {
+  cursor: pointer;
+  color: #032b0f;
+}
+
+.rightlogined a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rightlogined a:hover {
+  color: #021c0a;
+}
+
+.right a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.right a:hover {
+  color: #02270d;
+}
