@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprints import user
+from blueprints import users
 from extentions import db
 from db.db_config import dialect, user_name, password, host, database, port
 from flask_cors import CORS
@@ -13,7 +13,7 @@ db_url = f'{dialect}://{user_name}:{password}@{host}:{port}/{database}'
 app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 db.init_app(app)
 
-app.register_blueprint(user.user, url_prefix='/api/users')
+app.register_blueprint(users.users, url_prefix='/api/users')
 
 # Init the DB
 with app.app_context():

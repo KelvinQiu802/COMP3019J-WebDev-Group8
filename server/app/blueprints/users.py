@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, Response
-from models.user import User
+from models.users import Users
 from extentions import db
 
-user = Blueprint('user', __name__)
+users = Blueprint('user', __name__)
 
 
 """Get all userName in the db
@@ -12,10 +12,10 @@ Returns:
 """
 
 
-@user.get('/')
+@users.get('/')
 def all_users() -> Response:
-    users: list[User] = User.query.all()
-    return jsonify([u.user_name for u in users])
+    all_users: list[Users] = Users.query.all()
+    return jsonify([u.user_name for u in all_users])
 
 
 """Create a user
@@ -25,20 +25,20 @@ Returns:
 """
 
 
-@user.post('/')
+@users.post('/')
 def create_user() -> Response:
-    new_user = User(user_name=request.json['userName'],
-                    password=request.json['password'])
+    new_user = Users(user_name=request.json['userName'],
+                     password=request.json['password'])
     db.session.add(new_user)
     db.session.commit()
     return Response(status=200, response="User Created")
 
 
-@user.post('/login')
+@users.post('/login')
 def login_auth() -> Response:
     user_name = request.json['userName']
     password = request.json['password']
-    target_user: User = User.query.get(user_name)
+    target_user: Users = Users.query.get(user_name)
     if (target_user.password == password):
         return Response(status=200, response='Successful')
     else:
