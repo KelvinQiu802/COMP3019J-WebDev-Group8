@@ -8,7 +8,8 @@ import Link from 'next/link';
 import BookmarksBtn from '../BookmarksBtn';
 import { getMovieScore } from '../../../../utils/movieUtil';
 
-function MovieCard({ movie, isLogin, bookmarks, setBookmarks }) {
+
+function MovieCard(movie:any, isLogin:boolean, bookmarks: any, setBookmarks:any ) {
   const [score, setScore] = useState('0.0');
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function MovieCard({ movie, isLogin, bookmarks, setBookmarks }) {
         >{`${movie.releaseDate} / ${movie.country} / ${movie.genre}`}</p>
         <div className={styles.rating}>
           <Rating
-            value={score / 2}
+            value={parseFloat(score) / 2}
             size='small'
             precision={0.5}
             readOnly
@@ -43,12 +44,12 @@ function MovieCard({ movie, isLogin, bookmarks, setBookmarks }) {
           <div className={styles.score}>{score}</div>
         </div>
         <p className={styles.abstract}>{`"${movie.abstractInfo}"`}</p>
-        <BookmarksBtn
+        {/* <BookmarksBtn
           isLogin={isLogin}
           bookmarks={bookmarks}
           setBookmarks={setBookmarks}
           movie={movie}
-        />
+        /> */}
       </div>
     </div>
   );

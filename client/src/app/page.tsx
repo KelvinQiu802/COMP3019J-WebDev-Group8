@@ -15,7 +15,7 @@ async function getPageCount() {
   return Math.ceil(count / LIMIT);
 }
 
-async function getMovies(page, limit) {
+async function getMovies(page: number, limit: number) {
   const result = await fetch(
     `http://localhost:7070/api/movies?page=${page}&limit=${limit}`
   );
@@ -23,7 +23,7 @@ async function getMovies(page, limit) {
   return json;
 }
 
-async function getBookmarks(userName) {
+async function getBookmarks(userName: string) {
   const result = await fetch(
     `http://localhost:7070/api/bookmarks/${userName}`
   ).then((result) => result.json());
@@ -40,7 +40,7 @@ export default function Home() {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  function handlePageChange(e, pageNum) {
+  function handlePageChange(e: React.MouseEvent, pageNum: number) {
     router.push(`${pathName}?page=${pageNum}`);
   }
 
@@ -51,20 +51,20 @@ export default function Home() {
       if (userName) {
         setBookmarks(await getBookmarks(userName));
       }
-      setIsLogin(userName);
+      setIsLogin(!!userName);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      const page = Number.parseInt(searchParams.get('page'));
+      const page = Number.parseInt(searchParams.get('page') as string);
       setPage(page ? page : 1);
       setMovies(await getMovies(page ? page : 1, LIMIT));
     })();
   }, [searchParams]);
 
   useEffect(() => {
-    setIsLogin(localStorage.getItem('userName'));
+    setIsLogin(!!localStorage.getItem('userName'));
   }, [pathName]);
 
   return (
@@ -89,6 +89,4 @@ export default function Home() {
   );
 }
 
-export default function Home() {
-  return <h1>Home Page</h1>;
-}
+
