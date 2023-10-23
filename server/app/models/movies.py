@@ -10,7 +10,7 @@ class Movies(db.Model):
     movie_title: Mapped[str] = mapped_column(String(1024))
     starring: Mapped[str] = mapped_column(String(1024))
     language: Mapped[str] = mapped_column(String(1024))
-    directedBy: Mapped[str] = mapped_column(String(1024))
+    directors: Mapped[str] = mapped_column(String(1024))
     runtime: Mapped[str] = mapped_column(String(1024))
     release_date: Mapped[str] = mapped_column(String(1024))
     genre: Mapped[str] = mapped_column(String(1024))
@@ -25,7 +25,7 @@ class Movies(db.Model):
                     movie_title=self.movie_title,
                     starring=self.starring,
                     language=self.language,
-                    directedBy=self.directedBy,
+                    directedBy=self.directors,
                     runtime=self.runtime,
                     release_date=self.release_date,
                     genre=self.genre,
