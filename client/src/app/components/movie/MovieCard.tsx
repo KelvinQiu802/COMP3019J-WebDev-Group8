@@ -1,49 +1,54 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import styles from './movie.module.css';
 import Image from 'next/image';
 import { Rating } from '@mui/material';
 import Link from 'next/link';
-import BookmarksBtn from '../BookmarksBtn';
 import { getMovieScore } from '../../../../utils/movieUtil';
 
+interface Props {
+  movie: Movie;
+  isLogin: boolean;
+  bookmarks: Bookmark[];
+  setBookmarks: Dispatch<SetStateAction<Bookmark[]>>;
+}
 
-function MovieCard(movie:any, isLogin:boolean, bookmarks: any, setBookmarks:any ) {
+function MovieCard({ movie, isLogin, bookmarks, setBookmarks }: Props) {
   const [score, setScore] = useState('0.0');
 
   useEffect(() => {
     (async () => {
-      setScore(await getMovieScore(movie.movieId));
+      setScore(await getMovieScore(movie.movie_id));
     })();
   }, [movie]);
 
   return (
     <div className={styles.card}>
-      <Link href={`/movie/${movie.movieId}`}>
-        <Image src={movie.imgUrl} alt='img' width={100} height={150} />
+      <Link href={`/movie/${movie.movie_id}`}>
+        <Image src={movie.img_url} alt="img" width={100} height={150} />
       </Link>
       <div className={styles.right}>
-        <Link href={`/movie/${movie.movieId}`}>
-          <h1>{movie.movieTitle}</h1>
+        <Link href={`/movie/${movie.movie_id}`}>
+          <h1>{movie.movie_title}</h1>
         </Link>
         <p className={styles.director}>
-          {`Director: ${movie.director} / Starring: ${movie.starring}`}
+          {`Director: ${movie.directors} / Starring: ${movie.starring}`}
         </p>
         <p
           className={styles.info}
-        >{`${movie.releaseDate} / ${movie.country} / ${movie.genre}`}</p>
+        >{`${movie.release_date} / ${movie.country} / ${movie.genre}`}</p>
         <div className={styles.rating}>
           <Rating
             value={parseFloat(score) / 2}
-            size='small'
+            size="small"
             precision={0.5}
             readOnly
             className={styles.stars}
           />
           <div className={styles.score}>{score}</div>
         </div>
-        <p className={styles.abstract}>{`"${movie.abstractInfo}"`}</p>
+        <p className={styles.abstract}>{`"${movie.abstract}"`}</p>
         {/* <BookmarksBtn
           isLogin={isLogin}
           bookmarks={bookmarks}
