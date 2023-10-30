@@ -39,7 +39,7 @@ def login_auth() -> Response:
     user_name = request.json['userName']
     password = request.json['password']
     target_user: Users = Users.query.get(user_name)
-    if (target_user.password == password):
+    if (target_user != None and target_user.password == password):
         return Response(status=200, response='Successful')
     else:
         return Response(status=401, response='Failed')
