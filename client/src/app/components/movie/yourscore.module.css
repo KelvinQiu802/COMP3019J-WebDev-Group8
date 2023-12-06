@@ -1,0 +1,12 @@
+.yourscore {
+    align-items: center;
+    color: #494949;
+    font-size: 14px;
+  }
+  
+  .rate {
+    position: relative;
+    top: 6px;
+    left: 1px;
+  }
+  
