@@ -1,5 +1,5 @@
 from flask import Flask
-from blueprints import users, movies, scores, bookmarks
+from blueprints import users, movies, scores, bookmarks, comments
 from extentions import db
 from db.db_config import dialect, user_name, password, host, database, port
 from flask_cors import CORS
@@ -17,6 +17,7 @@ app.register_blueprint(users.users, url_prefix='/api/users')
 app.register_blueprint(movies.movies, url_prefix='/api/movies')
 app.register_blueprint(scores.scores, url_prefix='/api/scores')
 app.register_blueprint(bookmarks.bookmarks, url_prefix='/api/bookmarks')
+app.register_blueprint(comments.comments, url_prefix='/api/comments')
 
 # Init the DB
 with app.app_context():
