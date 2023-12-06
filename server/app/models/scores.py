@@ -14,4 +14,4 @@ class Scores(db.Model):
     )
 
     def toDict(self) -> dict[str, str]:
-        return dict(user_name=self.user_name, movie_id=self.movie_id, score=self.score)
+        return dict(userName=self.user_name, movieId=self.movie_id, score=self.score)

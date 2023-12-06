@@ -17,4 +17,4 @@ class Bookmarks(db.Model):
         Enum(Status.WANNA, Status.WATCHED), nullable=False)
 
     def toDict(self) -> dict[str, str]:
-        return dict(user_name=self.user_name, movie_id=self.movie_id, status=self.status)
+        return dict(userName=self.user_name, movieId=self.movie_id, status=self.status)

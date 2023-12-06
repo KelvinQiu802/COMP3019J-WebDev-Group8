@@ -17,4 +17,4 @@ class Commentvotes(db.Model):
         Enum(Status.UP, Status.DOWN), nullable=False)
 
     def toDict(self) -> dict[str, str]:
-        return dict(user_name=self.user_name, comment_id=self.comment_id, status=self.status)
+        return dict(userName=self.user_name, commentId=self.comment_id, status=self.status)

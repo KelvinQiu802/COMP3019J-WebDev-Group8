@@ -16,4 +16,4 @@ class Comments(db.Model):
         DATETIME, nullable=False, default=datetime.now())
 
     def toDict(self) -> dict[str, str]:
-        return dict(user_name=self.user_name, movie_id=self.movie_id, comment_id=self.comment_id, content=self.content, time=self.time)
+        return dict(userName=self.user_name, movieId=self.movie_id, commentId=self.comment_id, content=self.content, time=self.time)
