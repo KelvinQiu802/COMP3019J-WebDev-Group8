@@ -6,6 +6,9 @@ import { Rating } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { getMovieScore } from '../../../../utils/movieUtil';
 
+/***
+ * create score record
+ */
 async function createScoreRecord(userName:string, movieId:number, score:number) {
   await fetch(
     `http://localhost:7070/api/scores/${userName}/${movieId}/${score}`,
@@ -15,6 +18,9 @@ async function createScoreRecord(userName:string, movieId:number, score:number) 
   );
 }
 
+/***
+ * update score record
+ */
 async function updateScoreRecord(userName:string, movieId:number, score:number) {
   await fetch(
     `http://localhost:7070/api/scores/${userName}/${movieId}/${score}`,
@@ -24,6 +30,9 @@ async function updateScoreRecord(userName:string, movieId:number, score:number) 
   );
 }
 
+/***
+ * delete score record
+ */
 async function deleteScoreRecord(userName:string, movieId:number) {
   await fetch(`http://localhost:7070/api/scores/${userName}/${movieId}`, {
     method: 'DELETE',
@@ -45,6 +54,9 @@ async function getScoreIfExist(userName:string, movieId:number) {
   return 0;
 }
 
+/***
+ * your score
+ */
 function YourScore({ movie, setScore }: { movie: Movie; setScore: React.Dispatch<React.SetStateAction<number>> }) {
   const [isLogin, setIsLogin] = useState(false);
   const [myScore, setMyScore] = useState(0);

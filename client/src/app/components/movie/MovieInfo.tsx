@@ -4,9 +4,13 @@ import Image from 'next/image';
 import { Rating } from '@mui/material';
 import { getMovieScore } from '../../../../utils/movieUtil';
 
+/***
+ * movie info
+ */
 function MovieInfo({ movie, score, setScore }:{movie: Movie, score: number, setScore: React.Dispatch<React.SetStateAction<number>>}) {
   const [star, setStar] = useState(0);
 
+  // get score
   React.useEffect(() => {
     (async () => {
       setScore(+await getMovieScore(movie.movie_id));
