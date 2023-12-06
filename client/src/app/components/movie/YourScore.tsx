@@ -5,47 +5,50 @@ import style from './yourscore.module.css';
 import { Rating } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { getMovieScore } from '../../../../utils/movieUtil';
+import API_HOST from '../../../../utils/host';
 
 /***
  * create score record
  */
-async function createScoreRecord(userName:string, movieId:number, score:number) {
-  await fetch(
-    `http://localhost:7070/api/scores/${userName}/${movieId}/${score}`,
-    {
-      method: 'POST',
-    }
-  );
+async function createScoreRecord(
+  userName: string,
+  movieId: number,
+  score: number
+) {
+  await fetch(`${API_HOST}/scores/${userName}/${movieId}/${score}`, {
+    method: 'POST',
+  });
 }
 
 /***
  * update score record
  */
-async function updateScoreRecord(userName:string, movieId:number, score:number) {
-  await fetch(
-    `http://localhost:7070/api/scores/${userName}/${movieId}/${score}`,
-    {
-      method: 'PUT',
-    }
-  );
+async function updateScoreRecord(
+  userName: string,
+  movieId: number,
+  score: number
+) {
+  await fetch(`${API_HOST}/scores/${userName}/${movieId}/${score}`, {
+    method: 'PUT',
+  });
 }
 
 /***
  * delete score record
  */
-async function deleteScoreRecord(userName:string, movieId:number) {
-  await fetch(`http://localhost:7070/api/scores/${userName}/${movieId}`, {
+async function deleteScoreRecord(userName: string, movieId: number) {
+  await fetch(`${API_HOST}/scores/${userName}/${movieId}`, {
     method: 'DELETE',
   });
 }
 
-async function getScoreIfExist(userName:string, movieId:number) {
+async function getScoreIfExist(userName: string, movieId: number) {
   if (!movieId) {
     return 0;
   }
-  const scores = await fetch(
-    `http://localhost:7070/api/scores/${movieId}`
-  ).then((result) => result.json());
+  const scores = await fetch(`${API_HOST}/scores/${movieId}`).then((result) =>
+    result.json()
+  );
   for (let i = 0; i < scores.length; i++) {
     if (scores[i].userName == userName) {
       return scores[i].score;
@@ -57,43 +60,52 @@ async function getScoreIfExist(userName:string, movieId:number) {
 /***
  * your score
  */
-function YourScore({ movie, setScore }: { movie: Movie; setScore: React.Dispatch<React.SetStateAction<number>> }) {
+function YourScore({
+  movie,
+  setScore,
+}: {
+  movie: Movie;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [isLogin, setIsLogin] = useState(false);
   const [myScore, setMyScore] = useState(0);
   const router = useRouter();
 
-const handleChange = async (e: React.ChangeEvent<{}>, value: number | null) => {
+  const handleChange = async (
+    e: React.ChangeEvent<{}>,
+    value: number | null
+  ) => {
     if (!isLogin) {
-        router.push('/login');
-        return;
+      router.push('/login');
+      return;
     }
     const userName = localStorage.getItem('userName') ?? '';
     if (myScore === 0) {
-        if (value !== null) {
-            await createScoreRecord(userName, movie.movie_id, value);
-        }
+      if (value !== null) {
+        await createScoreRecord(userName, movie.movie_id, value);
+      }
     } else if (value === null) {
-        await deleteScoreRecord(userName, movie.movie_id);
+      await deleteScoreRecord(userName, movie.movie_id);
     } else {
-        await updateScoreRecord(userName, movie.movie_id, value);
+      await updateScoreRecord(userName, movie.movie_id, value);
     }
     setMyScore(value ?? 0);
-    setScore(+await getMovieScore(movie.movie_id));
-};
+    setScore(+(await getMovieScore(movie.movie_id)));
+  };
 
-useEffect(() => {
+  useEffect(() => {
     (async () => {
-        const userName = localStorage.getItem('userName');
-        setIsLogin(userName !== null);
-        setMyScore(await getScoreIfExist(userName ?? '', movie.movie_id));
+      const userName = localStorage.getItem('userName');
+      setIsLogin(userName !== null);
+      setMyScore(await getScoreIfExist(userName ?? '', movie.movie_id));
     })();
-}, [movie]);
+  }, [movie]);
 
   return (
     <div className={style.yourscore}>
       <span>Your Score: </span>
       <Rating
-        name='no-value'
+        name="no-value"
         value={myScore}
         onChange={handleChange}
         className={style.rate}
