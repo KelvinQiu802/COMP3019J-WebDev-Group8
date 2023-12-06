@@ -1,11 +1,11 @@
 .main {
-    width: 1200px;
-    margin: 0 auto;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

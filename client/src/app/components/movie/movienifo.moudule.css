@@ -1,66 +1,65 @@
 .head {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .title {
-    color: #494949;
-    font-size: 26px;
-  }
-  
-  .date {
-    color: #888888;
-    font-size: 26px;
-  }
-  
-  .body {
-    margin-top: 10px;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-  }
-  
-  .img {
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-  
-  .middle {
-    width: 333px;
-    font-size: 13px;
-  }
-  
-  .info .key {
-    color: #666666;
-  }
-  
-  .info {
-    line-height: 160%;
-  }
-  
-  .left {
-    border-left: 1px solid #9b9b9b;
-    padding-left: 10px;
-    margin-left: 7px;
-  }
-  
-  .left h5 {
-    color: #9b9b9b;
-    font-size: 12px;
-    font-weight: 400;
-  }
-  
-  .score {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .score div {
-    color: #494949;
-    font-size: 28px;
-  }
-  
-  .score .star {
-    margin-top: 4px;
-  }
-  
+  display: flex;
+  gap: 10px;
+}
+
+.title {
+  color: #494949;
+  font-size: 26px;
+}
+
+.date {
+  color: #888888;
+  font-size: 26px;
+}
+
+.body {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.img {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.middle {
+  width: 333px;
+  font-size: 13px;
+}
+
+.info .key {
+  color: #666666;
+}
+
+.info {
+  line-height: 160%;
+}
+
+.left {
+  border-left: 1px solid #9b9b9b;
+  padding-left: 10px;
+  margin-left: 7px;
+}
+
+.left h5 {
+  color: #9b9b9b;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.score {
+  display: flex;
+  gap: 10px;
+}
+
+.score div {
+  color: #494949;
+  font-size: 28px;
+}
+
+.score .star {
+  margin-top: 4px;
+}

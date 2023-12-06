@@ -7,13 +7,21 @@ import { getMovieScore } from '../../../../utils/movieUtil';
 /***
  * movie info
  */
-function MovieInfo({ movie, score, setScore }:{movie: Movie, score: number, setScore: React.Dispatch<React.SetStateAction<number>>}) {
+function MovieInfo({
+  movie,
+  score,
+  setScore,
+}: {
+  movie: Movie;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [star, setStar] = useState(0);
 
   // get score
   React.useEffect(() => {
     (async () => {
-      setScore(+await getMovieScore(movie.movie_id));
+      setScore(+(await getMovieScore(movie.movie_id)));
     })();
   }, [movie]);
 
@@ -32,7 +40,7 @@ function MovieInfo({ movie, score, setScore }:{movie: Movie, score: number, setS
           src={movie.img_url}
           width={136}
           height={200}
-          alt='Cover'
+          alt="Cover"
           className={style.img}
         />
         <div className={style.middle}>
@@ -72,7 +80,7 @@ function MovieInfo({ movie, score, setScore }:{movie: Movie, score: number, setS
             <Rating
               value={star}
               precision={0.5}
-              size='medium'
+              size="medium"
               className={style.star}
               readOnly
             />
