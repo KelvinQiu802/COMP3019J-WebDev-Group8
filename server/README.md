@@ -22,12 +22,29 @@ $ python3 app/app.py
 ## API Endpoints
 
 ```
-Endpoint            Methods  Rule
-------------------  -------  -----------------------
-movies.get_by_page  GET      /api/movies/
-movies.get_count    GET      /api/movies/count
-movies.get_movie    GET      /api/movies/<int:id>
-users.all_users     GET      /api/users/
-users.create_user   POST     /api/users/
-users.login_auth    POST     /api/users/login
+Endpoint                     Methods  Rule
+---------------------------  -------  -------------------------------------------------------
+bookmarks.add_bookmark       POST     /api/bookmarks/<user_name>/<int:movie_id>/<status>
+bookmarks.delete_bookmark    DELETE   /api/bookmarks/<user_name>/<int:movie_id>
+bookmarks.get_by_user        GET      /api/bookmarks/<user_name>
+bookmarks.update_bookmark    PUT      /api/bookmarks/<user_name>/<int:movie_id>/<status>
+comments.create              POST     /api/comments/
+comments.del_comment         DELETE   /api/comments/<int:id>
+comments.get_by_id           GET      /api/comments/<int:id>
+comments.get_by_movie_id     GET      /api/comments/movie/<int:movie_id>
+commentvotes.add_vote        POST     /api/commentvotes/<user_name>/<int:comment_id>/<status>
+commentvotes.delete_vote     DELETE   /api/commentvotes/<user_name>/<int:comment_id>
+commentvotes.get_by_comment  GET      /api/commentvotes/<int:comment_id>
+commentvotes.update_vote     PUT      /api/commentvotes/<user_name>/<int:comment_id>/<status>
+movies.get_by_page           GET      /api/movies/
+movies.get_count             GET      /api/movies/count
+movies.get_movie             GET      /api/movies/<int:id>
+scores.create_score          POST     /api/scores/<user_name>/<int:movie_id>/<score>
+scores.get_by_id             GET      /api/scores/<int:movie_id>
+scores.remove_score          DELETE   /api/scores/<user_name>/<int:movie_id>
+scores.update_score          PUT      /api/scores/<user_name>/<int:movie_id>/<score>
+static                       GET      /static/<path:filename>
+users.all_users              GET      /api/users/
+users.create_user            POST     /api/users/
+users.login_auth             POST     /api/users/login
 ```
