@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, Response
 from models.users import Users
+from models.users import Role
 from extentions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -44,3 +45,11 @@ def login_auth() -> Response:
         return Response(status=200, response='Successful')
     else:
         return Response(status=401, response='Failed')
+
+
+@users.get('/auth/<user_name>')
+def admin_auth(user_name) -> Response:
+    target: Users = Users.query.get(user_name)
+    if (target.role == Role.ADMIN):
+        return Response(status=200)  # is admin
+    return Response(status=401)
