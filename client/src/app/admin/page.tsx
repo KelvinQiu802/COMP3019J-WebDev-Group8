@@ -5,6 +5,7 @@ import style from './page.module.css';
 import API_HOST from '../../../utils/host';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
+import ManageAccounts from './components/ManageAccounts';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -49,7 +50,7 @@ function Page() {
         </Tabs>
       </Box>
       <CustomTabPanel value={tabIndex} index={0}>
-        Item One
+        <ManageAccounts />
       </CustomTabPanel>
       <CustomTabPanel value={tabIndex} index={1}>
         Item Two

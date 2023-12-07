@@ -1,0 +1,12 @@
+.accounts {
+  display: flex;
+  gap: 20px;
+  width: 1000px;
+  flex-wrap: wrap;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
