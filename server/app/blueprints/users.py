@@ -36,6 +36,14 @@ def create_user() -> Response:
     return Response(status=200, response="User Created")
 
 
+@users.delete('/<user_name>')
+def del_user(user_name) -> Response:
+    to_del = Users.query.get(user_name)
+    db.session.delete(to_del)
+    db.session.commit()
+    return Response(status=201, response='User Deleted!')
+
+
 @users.post('/login')
 def login_auth() -> Response:
     user_name = request.json['userName']
