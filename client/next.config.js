@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: '*.doubanio.com',
       },
+      {
+        hostname: 'http.cat',
+      },
     ],
   },
 };
