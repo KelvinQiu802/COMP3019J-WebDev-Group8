@@ -1,0 +1,33 @@
+.content {
+  width: 720px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.rate {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btns {
+  margin-top: 2px;
+}
+
+.introtitle {
+  color: #33742f;
+  font-size: 18px;
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+.intro {
+  line-height: 1.62;
+  color: #111111;
+  text-indent: 2em;
+  font-size: 13px;
+}
+
+.blank {
+  height: 50px;
+}
