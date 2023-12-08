@@ -15,3 +15,11 @@ interface Movie {
 }
 
 interface Bookmark {}
+
+interface Comment {
+  userName: string;
+  movieId: number;
+  commentId: number;
+  content: string;
+  time: string;
+}

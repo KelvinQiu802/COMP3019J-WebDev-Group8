@@ -6,8 +6,8 @@ import style from './page.module.css';
 import YourScore from '../../components/movie/YourScore';
 import BookmarksBtn from '../../components/BookmarksBtn';
 import API_HOST from '../../../../utils/host';
-// import Comments from '../components/comment/Comments';
-// import TextArea from '../components/comment/TextArea';
+import Comments from '../../components/comment/Comments';
+import TextArea from '../../components/comment/TextArea';
 
 async function getBookmarks(userName: string) {
   const result = await fetch(`${API_HOST}/bookmarks/${userName}`).then(
@@ -60,8 +60,8 @@ export default function Page({ params }: { params: { id: any } }) {
           <div className={style.introtitle}>Introduction · · · · · ·</div>
           <div className={style.intro}>{movie.intro}</div>
           <div className={style.introtitle}>Comments · · · · · ·</div>
-          {/* <TextArea movie={movie} isLogin={isLogin} />
-              <Comments movie={movie} isLogin={isLogin} /> */}
+          <TextArea movie={movie} isLogin={isLogin} />
+          <Comments movie={movie} isLogin={isLogin} />
           <div className={style.blank}></div>
         </>
       )}

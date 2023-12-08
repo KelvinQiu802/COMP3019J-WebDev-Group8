@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import style from './comments.module.css';
 import Comment from './Comment';
+import API_HOST from '../../../../utils/host';
 
 const ORDER = {
   POPULAR: 'popular',
@@ -11,13 +12,13 @@ const ORDER = {
 
 interface Vote {
   userName: string;
-  status: "UP" | "DOWN";
+  status: 'UP' | 'DOWN';
 }
 
 async function getVotes(id: String) {
-  const result = await fetch(
-    `http://localhost:7070/api/commentvotes/${id}`
-  ).then((result) => result.json());
+  const result = await fetch(`${API_HOST}/commentvotes/${id}`).then((result) =>
+    result.json()
+  );
   return result;
 }
 
@@ -44,26 +45,23 @@ function sortByTime(comments: any[]) {
   return commentsCopy;
 }
 
-async function getComments(id: String) {
+async function getComments(id: number) {
   if (!id) {
     return [];
   }
-  const result = await fetch(
-    `http://localhost:7070/api/comments/movie/${id}`
-  ).then((result) => result.json());
+  const result = await fetch(`${API_HOST}/comments/movie/${id}`).then(
+    (result) => result.json()
+  );
   return result;
 }
 
-
 interface CommentsProps {
-  movie: {
-    movieId: string;
-  };
+  movie: Movie;
   isLogin: boolean;
 }
 
 function Comments({ movie, isLogin }: CommentsProps) {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [order, setOrder] = useState(ORDER.POPULAR);
 
   const handlePopular = () => {
@@ -76,20 +74,21 @@ function Comments({ movie, isLogin }: CommentsProps) {
 
   useEffect(() => {
     (async () => {
-      setComments(await sortByPolular(await getComments(movie.movieId))as any);
+      setComments(
+        (await sortByPolular(await getComments(movie.movie_id))) as any
+      );
     })();
   }, [movie]);
 
   useEffect(() => {
     (async () => {
       if (order == ORDER.POPULAR) {
-        setComments(await sortByPolular(comments)as any);
+        setComments((await sortByPolular(comments)) as any);
       } else {
-        setComments(sortByTime(comments)as any);
+        setComments(sortByTime(comments) as any);
       }
     })();
   }, [order]);
-
 
   return (
     <div className={style.content}>
