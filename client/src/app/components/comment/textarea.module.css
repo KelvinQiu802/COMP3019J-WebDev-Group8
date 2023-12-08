@@ -1,0 +1,18 @@
+.text {
+    padding: 4px;
+    width: 710px;
+    height: 80px;
+    resize: none;
+    outline-color: #7ca674;
+  }
+  
+  .btnbox {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+  
+  .submit {
+    margin-top: 2px;
+  }
+  
