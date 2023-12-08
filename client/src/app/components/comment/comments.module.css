@@ -1,26 +1,25 @@
 .content {
-    margin-top: 10px;
-  }
-  
-  .order {
-    display: flex;
-    font-size: 13px;
-    gap: 5px;
-    color: #666666;
-  }
-  
-  .order .label {
-    cursor: default;
-    color: #444444;
-  }
-  
-  .order div {
-    cursor: pointer;
-    padding: 1px;
-  }
-  
-  .select {
-    background-color: #7ca674;
-    color: white;
-  }
-  
+  margin-top: 10px;
+}
+
+.order {
+  display: flex;
+  font-size: 13px;
+  gap: 5px;
+  color: #666666;
+}
+
+.order .label {
+  cursor: default;
+  color: #444444;
+}
+
+.order div {
+  cursor: pointer;
+  padding: 1px;
+}
+
+.select {
+  background-color: #7ca674;
+  color: white;
+}
