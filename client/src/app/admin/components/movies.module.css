@@ -1,10 +1,20 @@
 .moviesList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  gap: 20px;
   justify-content: center;
   margin-top: 10px;
+}
+
+.movie {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
 }
 
 .pagination {
