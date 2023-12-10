@@ -26,8 +26,7 @@ function ManageAccounts() {
   }, [refresh]);
 
   return (
-    <div>
-      <h1>Delete Account</h1>
+    <div className={style.box}>
       <div className={style.accounts}>
         {accounts.map((account) => (
           <div key={account} className={style.account}>
