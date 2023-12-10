@@ -1,4 +1,23 @@
-.center {
+.content {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.notlogin {
   text-align: center;
-  margin-top: 200px;
+  color: #357436;
+}
+
+.notlogin h1 {
+  margin-bottom: 30px;
+}
+
+.logined .category {
+  color: #494949;
+  font-size: 21px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  margin-left: 63px;
+  margin-top: 10px;
 }

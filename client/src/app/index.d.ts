@@ -14,7 +14,13 @@ interface Movie {
   score: number;
 }
 
-interface Bookmark {}
+interface Bookmark {
+  userName: string;
+  movieId: number;
+  status: BookmarkStatus;
+}
+
+type BookmarkStatus = 'WANNA' | 'WATCHED';
 
 interface Comment {
   userName: string;
