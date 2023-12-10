@@ -4,6 +4,7 @@ import API_HOST from '../../../../utils/host';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Button, Pagination } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
+import MovieEditDialog from './MovieEditDialog';
 
 const LIMIT = 15;
 
@@ -25,12 +26,15 @@ function ManageMovies() {
   const [pageCount, setPageCount] = useState(1);
   const [page, setPage] = useState(1);
   const [update, setUpdate] = useState(true);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState<Movie>();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
 
-  const notifyDeleted = (userName: string) =>
-    toast(`Movie: ${userName} Deleted!`);
+  const notifyDeleted = (name: string) => toast(`Movie: ${name} Deleted!`);
+
+  const notifyEdited = (name: string) => toast(`Movie: ${name} Edited!`);
 
   function handlePageChange(e: ChangeEvent<unknown>, pageNum: number) {
     router.push(`${pathName}?page=${pageNum}`);
@@ -56,7 +60,10 @@ function ManageMovies() {
     notifyDeleted(name);
   };
 
-  const handleEdit = (id: number) => {};
+  const handleEdit = (id: number) => {
+    setSelectedMovie(movies.filter((m) => m.movie_id == id)[0]);
+    setOpenEdit(true);
+  };
 
   return (
     <div className={style.moviesList}>
@@ -65,22 +72,31 @@ function ManageMovies() {
           <div>{m.movie_title}</div>
           <div className={style.btns}>
             <Button
-              onClick={() => handleRemove(m.movie_id, m.movie_title)}
-              variant="contained"
-              color="error"
-            >
-              DEL
-            </Button>
-            <Button
               onClick={() => handleEdit(m.movie_id)}
               variant="contained"
               color="warning"
             >
               EDIT
             </Button>
+            <Button
+              onClick={() => handleRemove(m.movie_id, m.movie_title)}
+              variant="contained"
+              color="error"
+            >
+              DEL
+            </Button>
           </div>
         </div>
       ))}
+      {selectedMovie && (
+        <MovieEditDialog
+          openEdit={openEdit}
+          setOpenEdit={setOpenEdit}
+          movie={selectedMovie}
+          setUpdate={setUpdate}
+          notifyEdited={notifyEdited}
+        />
+      )}
       <Pagination
         count={pageCount}
         shape="rounded"
