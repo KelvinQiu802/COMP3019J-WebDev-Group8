@@ -6,6 +6,7 @@ import API_HOST from '../../../utils/host';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 import ManageAccounts from './components/ManageAccounts';
+import ManageMovies from './components/ManageMovies';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -53,7 +54,7 @@ function Page() {
         <ManageAccounts />
       </CustomTabPanel>
       <CustomTabPanel value={tabIndex} index={1}>
-        Item Two
+        <ManageMovies />
       </CustomTabPanel>
       <CustomTabPanel value={tabIndex} index={2}>
         Item Three
