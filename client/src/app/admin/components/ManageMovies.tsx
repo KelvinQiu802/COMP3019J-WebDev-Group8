@@ -5,8 +5,9 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Button, Pagination } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import MovieEditDialog from './MovieEditDialog';
+import AddMovieDialog from './AddMovieDialog';
 
-const LIMIT = 15;
+const LIMIT = 10;
 
 async function getPageCount() {
   const result = await fetch(`${API_HOST}/movies/count`);
@@ -27,14 +28,15 @@ function ManageMovies() {
   const [page, setPage] = useState(1);
   const [update, setUpdate] = useState(true);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie>();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
 
   const notifyDeleted = (name: string) => toast(`Movie: ${name} Deleted!`);
-
   const notifyEdited = (name: string) => toast(`Movie: ${name} Edited!`);
+  const notifyAdded = (name: string) => toast(`Movie: ${name} Added!`);
 
   function handlePageChange(e: ChangeEvent<unknown>, pageNum: number) {
     router.push(`${pathName}?page=${pageNum}`);
@@ -66,56 +68,71 @@ function ManageMovies() {
   };
 
   return (
-    <div className={style.moviesList}>
-      {movies.map((m) => (
-        <div key={m.movie_id} className={style.movie}>
-          <div>{m.movie_title}</div>
-          <div className={style.btns}>
-            <Button
-              onClick={() => handleEdit(m.movie_id)}
-              variant="contained"
-              color="warning"
-            >
-              EDIT
-            </Button>
-            <Button
-              onClick={() => handleRemove(m.movie_id, m.movie_title)}
-              variant="contained"
-              color="error"
-            >
-              DEL
-            </Button>
+    <div>
+      <Button
+        variant="contained"
+        className={style.add}
+        onClick={() => setOpenAdd(true)}
+      >
+        Add New Movie
+      </Button>
+      <AddMovieDialog
+        open={openAdd}
+        setOpen={setOpenAdd}
+        setUpdate={setUpdate}
+        notify={notifyAdded}
+      />
+      <div className={style.moviesList}>
+        {movies.map((m) => (
+          <div key={m.movie_id} className={style.movie}>
+            <div>{m.movie_title}</div>
+            <div className={style.btns}>
+              <Button
+                onClick={() => handleEdit(m.movie_id)}
+                variant="contained"
+                color="warning"
+              >
+                EDIT
+              </Button>
+              <Button
+                onClick={() => handleRemove(m.movie_id, m.movie_title)}
+                variant="contained"
+                color="error"
+              >
+                DEL
+              </Button>
+            </div>
           </div>
-        </div>
-      ))}
-      {selectedMovie && (
-        <MovieEditDialog
-          openEdit={openEdit}
-          setOpenEdit={setOpenEdit}
-          movie={selectedMovie}
-          setUpdate={setUpdate}
-          notifyEdited={notifyEdited}
+        ))}
+        {selectedMovie && (
+          <MovieEditDialog
+            openEdit={openEdit}
+            setOpenEdit={setOpenEdit}
+            movie={selectedMovie}
+            setUpdate={setUpdate}
+            notifyEdited={notifyEdited}
+          />
+        )}
+        <Pagination
+          count={pageCount}
+          shape="rounded"
+          className={style.pagination}
+          page={page}
+          onChange={handlePageChange}
         />
-      )}
-      <Pagination
-        count={pageCount}
-        shape="rounded"
-        className={style.pagination}
-        page={page}
-        onChange={handlePageChange}
-      />
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </div>
     </div>
   );
 }
