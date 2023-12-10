@@ -53,3 +53,21 @@ def remove_movie(id) -> Response:
     db.session.delete(to_del)
     db.session.commit()
     return Response(status=201, response='Movie Deleted!')
+
+
+@movies.put('/')
+def update_movie() -> Response:
+    to_update: Movies = Movies.query.get(request.json['movie_id'])
+    to_update.abstract = request.json['abstract']
+    to_update.country = request.json['country']
+    to_update.directors = request.json['directedBy']
+    to_update.genre = request.json['genre']
+    to_update.img_url = request.json['img_url']
+    to_update.intro = request.json['intro']
+    to_update.language = request.json['language']
+    to_update.movie_title = request.json['movie_title']
+    to_update.release_date = request.json['release_date']
+    to_update.runtime = request.json['runtime']
+    to_update.starring = request.json['starring']
+    db.session.commit()
+    return Response(status=201, response='Movie Updated!')
