@@ -71,3 +71,11 @@ def update_movie() -> Response:
     to_update.starring = request.json['starring']
     db.session.commit()
     return Response(status=201, response='Movie Updated!')
+
+
+@movies.post('/')
+def add_movie() -> Response:
+    new_movie = Movies(**request.json)
+    db.session.add(new_movie)
+    db.session.commit()
+    return Response(status=201, response='Movie Added!')

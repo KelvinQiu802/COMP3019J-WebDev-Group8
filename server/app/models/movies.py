@@ -4,19 +4,20 @@ from extentions import db
 
 
 class Movies(db.Model):
-    movie_id: Mapped[int] = mapped_column(BIGINT, primary_key=True)
-    country: Mapped[str] = mapped_column(String(1024))
-    intro: Mapped[str] = mapped_column(TEXT)
-    movie_title: Mapped[str] = mapped_column(String(1024))
-    starring: Mapped[str] = mapped_column(String(1024))
-    language: Mapped[str] = mapped_column(String(1024))
-    directors: Mapped[str] = mapped_column(String(1024))
-    runtime: Mapped[str] = mapped_column(String(1024))
-    release_date: Mapped[str] = mapped_column(String(1024))
-    genre: Mapped[str] = mapped_column(String(1024))
-    img_url: Mapped[str] = mapped_column(String(1024))
-    abstract: Mapped[str] = mapped_column(String(1024))
-    score: Mapped[float] = mapped_column(DOUBLE)
+    movie_id: Mapped[int] = mapped_column(
+        BIGINT, primary_key=True, autoincrement=True)
+    country: Mapped[str] = mapped_column(String(1024), nullable=False)
+    intro: Mapped[str] = mapped_column(TEXT, nullable=False)
+    movie_title: Mapped[str] = mapped_column(String(1024), nullable=False)
+    starring: Mapped[str] = mapped_column(String(1024), nullable=False)
+    language: Mapped[str] = mapped_column(String(1024), nullable=False)
+    directors: Mapped[str] = mapped_column(String(1024), nullable=False)
+    runtime: Mapped[str] = mapped_column(String(1024), nullable=False)
+    release_date: Mapped[str] = mapped_column(String(1024), nullable=False)
+    genre: Mapped[str] = mapped_column(String(1024), nullable=False)
+    img_url: Mapped[str] = mapped_column(String(1024), nullable=False)
+    abstract: Mapped[str] = mapped_column(String(1024), nullable=False)
+    score: Mapped[float] = mapped_column(DOUBLE, default=0, nullable=False)
 
     def to_dict(self) -> dict:
         return dict(movie_id=self.movie_id,
