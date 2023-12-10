@@ -1,5 +1,6 @@
 from flask import Blueprint, Response, request, jsonify
 from models.movies import Movies
+from extentions import db
 
 movies = Blueprint('movies', __name__)
 
@@ -44,3 +45,11 @@ def get_by_page() -> Response:
     all_movies: list[Movies] = Movies.query.offset(
         (page - 1) * limit).limit(limit)
     return jsonify([m.to_dict() for m in all_movies])
+
+
+@movies.delete('/<int:id>')
+def remove_movie(id) -> Response:
+    to_del = Movies.query.get(id)
+    db.session.delete(to_del)
+    db.session.commit()
+    return Response(status=201, response='Movie Deleted!')
