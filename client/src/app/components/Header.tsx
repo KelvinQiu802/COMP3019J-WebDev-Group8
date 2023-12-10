@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import style from './header.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import API_HOST from '../../../utils/host';
 
 /* Header component definition */
 function Header() {
   const router = useRouter();
   const path = usePathname();
   const [isLogin, setIsLogin] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('userName');
@@ -18,7 +20,20 @@ function Header() {
   };
 
   useEffect(() => {
-    setIsLogin(localStorage.getItem('userName'));
+    const userName = localStorage.getItem('userName');
+    setIsLogin(userName);
+    (async () => {
+      if (userName == null) {
+        setIsAdmin(false);
+        return;
+      }
+      const response = await fetch(`${API_HOST}/users/auth/${userName}`);
+      if (response.status == 200) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    })();
   }, [path]);
 
   return (
@@ -32,6 +47,7 @@ function Header() {
             <p>{`Hi, ${localStorage.getItem('userName')}`}</p>
             <Link href="/bookmark">Bookmarks</Link>
             <span onClick={handleLogout}>Logout</span>
+            {isAdmin && <Link href="/admin">Admin</Link>}
           </div>
         ) : (
           <div className={style.right}>
