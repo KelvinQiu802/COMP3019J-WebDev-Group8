@@ -36,15 +36,20 @@ commentvotes.add_vote        POST     /api/commentvotes/<user_name>/<int:comment
 commentvotes.delete_vote     DELETE   /api/commentvotes/<user_name>/<int:comment_id>
 commentvotes.get_by_comment  GET      /api/commentvotes/<int:comment_id>
 commentvotes.update_vote     PUT      /api/commentvotes/<user_name>/<int:comment_id>/<status>
+movies.add_movie             POST     /api/movies/
 movies.get_by_page           GET      /api/movies/
 movies.get_count             GET      /api/movies/count
 movies.get_movie             GET      /api/movies/<int:id>
+movies.remove_movie          DELETE   /api/movies/<int:id>
+movies.update_movie          PUT      /api/movies/
 scores.create_score          POST     /api/scores/<user_name>/<int:movie_id>/<score>
 scores.get_by_id             GET      /api/scores/<int:movie_id>
 scores.remove_score          DELETE   /api/scores/<user_name>/<int:movie_id>
 scores.update_score          PUT      /api/scores/<user_name>/<int:movie_id>/<score>
 static                       GET      /static/<path:filename>
+users.admin_auth             GET      /api/users/auth/<user_name>
 users.all_users              GET      /api/users/
 users.create_user            POST     /api/users/
+users.del_user               DELETE   /api/users/<user_name>
 users.login_auth             POST     /api/users/login
 ```
