@@ -17,12 +17,15 @@ import { isBlank } from '../../../utils/stringUtil';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mui/material';
 import API_HOST from '../../../utils/host';
+import { ToastContainer, toast } from 'react-toastify';
 
 // Create a Material-UI theme
 const theme = createTheme();
 
 export default function SignUp() {
   const router = useRouter();
+
+  const notifyLogin = () => toast(`Registered successfully, please login`);
 
   // Define state variables for button and name availability
   let [btnDisabled, setBtnDisabled] = useState(true);
@@ -59,7 +62,11 @@ export default function SignUp() {
       alert('Sign up failed, please try again.');
     } else {
       // If sign-up is successful, navigate to the login page
-      router.push('/login');
+      // TODO
+      notifyLogin();
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
     }
   };
 
@@ -157,6 +164,18 @@ export default function SignUp() {
           </Box>
         </Box>
       </Container>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </ThemeProvider>
   );
 }
