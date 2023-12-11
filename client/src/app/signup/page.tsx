@@ -35,6 +35,7 @@ export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     userName: '',
     password: '',
+    passwordRepeat: '',
   });
 
   // Handle changes in input field values
@@ -42,7 +43,12 @@ export default function SignUp() {
     setUserInfo((prev) => {
       // Update user information and check if the "Sign Up" button should be disabled
       const updated = { ...prev, [e.target.name]: e.target.value };
-      setBtnDisabled(isBlank(updated.userName) || isBlank(updated.password));
+      setBtnDisabled(
+        isBlank(updated.userName) ||
+          isBlank(updated.password) ||
+          isBlank(updated.passwordRepeat) ||
+          updated.password != updated.passwordRepeat
+      );
       return updated;
     });
   };
@@ -134,6 +140,24 @@ export default function SignUp() {
               value={userInfo.password}
               autoComplete="current-password"
             />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="passwordRepeat"
+              label="Confirm Password"
+              type="password"
+              id="passwordRepeat"
+              color="success"
+              onChange={handleInfoChange}
+              value={userInfo.passwordRepeat}
+              autoComplete="current-password"
+            />
+            {userInfo.password != userInfo.passwordRepeat && (
+              <Alert severity="error" sx={{ width: 400 }}>
+                The passwords entered twice do not match.
+              </Alert>
+            )}
             <Button
               type="submit"
               fullWidth
