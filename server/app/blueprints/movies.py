@@ -1,6 +1,7 @@
 from flask import Blueprint, Response, request, jsonify
 from models.movies import Movies
 from extentions import db
+from loguru import logger
 
 movies = Blueprint('movies', __name__)
 
@@ -15,6 +16,7 @@ Returns:
 @movies.get('/<int:id>')
 def get_movie(id) -> Response:
     movie: Movies = Movies.query.get(id)
+    logger.success("Get Movie by ID: {}", id)
     return jsonify(movie.to_dict())
 
 
@@ -28,6 +30,7 @@ Returns:
 @movies.get('/count')
 def get_count() -> Response:
     count = Movies.query.count()
+    logger.success("Get Movie Count: {} Movies", count)
     return jsonify({"count": count})
 
 
@@ -44,6 +47,7 @@ def get_by_page() -> Response:
     limit = int(request.args['limit'])
     all_movies: list[Movies] = Movies.query.offset(
         (page - 1) * limit).limit(limit)
+    logger.success("Get Movie for Page: {}, limit {}", page, limit)
     return jsonify([m.to_dict() for m in all_movies])
 
 
@@ -52,6 +56,7 @@ def remove_movie(id) -> Response:
     to_del = Movies.query.get(id)
     db.session.delete(to_del)
     db.session.commit()
+    logger.success("Remove Movie ID: {}", id)
     return Response(status=201, response='Movie Deleted!')
 
 
@@ -70,6 +75,7 @@ def update_movie() -> Response:
     to_update.runtime = request.json['runtime']
     to_update.starring = request.json['starring']
     db.session.commit()
+    logger.success("Update Movie ID: {}", request.json['movie_id'])
     return Response(status=201, response='Movie Updated!')
 
 
@@ -78,4 +84,5 @@ def add_movie() -> Response:
     new_movie = Movies(**request.json)
     db.session.add(new_movie)
     db.session.commit()
+    logger.success("Add New Movie ID: {}", request.json['movie_id'])
     return Response(status=201, response='Movie Added!')

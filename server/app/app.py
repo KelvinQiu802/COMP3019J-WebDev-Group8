@@ -3,7 +3,9 @@ from blueprints import users, movies, scores, bookmarks, comments, commentvotes
 from extentions import db
 from db.db_config import dialect, user_name, password, host, database, port
 from flask_cors import CORS
+from loguru import logger
 
+logger.add("./log/app.log")
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False

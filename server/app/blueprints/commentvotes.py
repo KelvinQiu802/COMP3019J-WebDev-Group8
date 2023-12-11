@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, Response
 from models.commentvotes import Commentvotes
 from extentions import db
+from loguru import logger
 
 commentvotes = Blueprint('commentvotes', __name__)
 
@@ -9,6 +10,7 @@ commentvotes = Blueprint('commentvotes', __name__)
 def get_by_comment(comment_id) -> Response:
     all_votes: list[Commentvotes] = Commentvotes.query.where(
         Commentvotes.comment_id == comment_id).all()
+    logger.success('Get Votes by Coment ID: {}', comment_id)
     return jsonify([v.toDict() for v in all_votes])
 
 
@@ -18,6 +20,8 @@ def add_vote(user_name, comment_id, status) -> Response:
                             comment_id=comment_id, status=status)
     db.session.add(new_vote)
     db.session.commit()
+    logger.success("Add Vote for Comment ID: {}, UserName: {}, Status: {}",
+                   comment_id, user_name, status)
     return Response(status=201, response='New Vote Added!')
 
 
@@ -27,6 +31,8 @@ def update_vote(user_name, comment_id, status) -> Response:
         Commentvotes.comment_id == comment_id).first()
     old_vote.status = status
     db.session.commit()
+    logger.success("Update Vote for Comment ID: {}, UserName: {}, Status: {}",
+                   comment_id, user_name, status)
     return Response(status=201, response='Vote Updated!')
 
 
@@ -36,4 +42,6 @@ def delete_vote(user_name, comment_id) -> Response:
         Commentvotes.comment_id == comment_id).first()
     db.session.delete(to_del)
     db.session.commit()
+    logger.success("Delete Vote for Comment ID: {}, UserName: {}",
+                   comment_id, user_name)
     return Response(status=201, response='Vote Deleted!')

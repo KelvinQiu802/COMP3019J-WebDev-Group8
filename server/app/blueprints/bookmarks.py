@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, Response
 from models.bookmarks import Bookmarks
 from extentions import db
+from loguru import logger
 
 bookmarks = Blueprint('bookmarks', __name__)
 
@@ -9,6 +10,7 @@ bookmarks = Blueprint('bookmarks', __name__)
 def get_by_user(user_name) -> Response:
     all_bookmarks: list[Bookmarks] = Bookmarks.query.where(
         Bookmarks.user_name == user_name).all()
+    logger.success("Get Bookmakrs for User: {}", user_name)
     return jsonify([bm.toDict() for bm in all_bookmarks])
 
 
@@ -17,6 +19,8 @@ def add_bookmark(user_name, movie_id, status) -> Response:
     new_bm = Bookmarks(user_name=user_name, movie_id=movie_id, status=status)
     db.session.add(new_bm)
     db.session.commit()
+    logger.success("Add New Bookmakrs to User: {}, MovieId: {}, Status: {}",
+                   user_name, movie_id, status)
     return Response(status=204, response='Bookmark Added!')
 
 
@@ -26,6 +30,8 @@ def update_bookmark(user_name, movie_id, status) -> Response:
         Bookmarks.movie_id == movie_id).first()
     old_bm.status = status
     db.session.commit()
+    logger.success("Update Bookmakrs for User: {}, MovieId: {}, Status: {}",
+                   user_name, movie_id, status)
     return Response(status=204, response='Bookmark Updated!')
 
 
@@ -35,4 +41,6 @@ def delete_bookmark(user_name, movie_id) -> Response:
         Bookmarks.movie_id == movie_id).first()
     db.session.delete(to_del)
     db.session.commit()
+    logger.success("Delete Bookmakrs for User: {}, MovieId: {}, Status: {}",
+                   user_name, movie_id)
     return Response(status=204, response='Bookmark Deleted!')
