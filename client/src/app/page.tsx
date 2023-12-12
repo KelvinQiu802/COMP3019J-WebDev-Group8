@@ -5,7 +5,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import styles from './page.module.css';
 import MovieCard from './components/movie/MovieCard';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import API_HOST from '../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 const LIMIT = 10;
 

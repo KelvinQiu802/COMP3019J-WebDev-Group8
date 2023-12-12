@@ -16,7 +16,8 @@ import { green } from '@mui/material/colors';
 import { isBlank } from '../../../utils/stringUtil';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mui/material';
-import API_HOST from '../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 // Create a Material-UI theme
 const theme = createTheme();

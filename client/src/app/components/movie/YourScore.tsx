@@ -5,7 +5,8 @@ import style from './yourscore.module.css';
 import { Rating } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { getMovieScore } from '../../../../utils/movieUtil';
-import API_HOST from '../../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 /***
  * create score record

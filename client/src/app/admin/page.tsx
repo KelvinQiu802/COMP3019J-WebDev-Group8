@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import style from './page.module.css';
-import API_HOST from '../../../utils/host';
 import { useRouter } from 'next/navigation';
 import { Box, Tab, Tabs } from '@mui/material';
 import ManageAccounts from './components/ManageAccounts';
 import ManageMovies from './components/ManageMovies';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 interface TabPanelProps {
   children?: React.ReactNode;

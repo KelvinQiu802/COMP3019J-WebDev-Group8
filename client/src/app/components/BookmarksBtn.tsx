@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './bookmarkbtn.module.css';
 import Link from 'next/link';
 import STATUS from '../../../utils/bookmarkStatus';
-import API_HOST from '../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 /*** check if the movie is included in the bookmark list
  * @param list: bookmark list

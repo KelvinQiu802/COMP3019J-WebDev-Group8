@@ -6,7 +6,8 @@ import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import STATUS from '../../../utils/bookmarkStatus';
 import MovieCard from '../components/movie/MovieCard';
-import API_HOST from '../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 async function getBookmarks(userName: string) {
   const result = await fetch(`${API_HOST}/bookmarks/${userName}`).then(

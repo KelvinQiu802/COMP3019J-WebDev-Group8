@@ -3,7 +3,8 @@ import style from './textarea.module.css';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { isBlank } from '../../../../utils/stringUtil';
-import API_HOST from '../../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 interface TextAreaProps {
   movie: Movie;

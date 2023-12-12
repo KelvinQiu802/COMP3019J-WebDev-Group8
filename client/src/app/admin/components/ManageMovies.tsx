@@ -1,11 +1,12 @@
 import { useEffect, useState, ChangeEvent } from 'react';
 import style from './movies.module.css';
-import API_HOST from '../../../../utils/host';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Button, Pagination } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import MovieEditDialog from './MovieEditDialog';
 import AddMovieDialog from './AddMovieDialog';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 const LIMIT = 10;
 

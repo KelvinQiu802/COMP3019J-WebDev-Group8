@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from '@mui/material';
-import API_HOST from '../../../../utils/host';
 import style from './accounts.module.css';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 function ManageAccounts() {
   const [accounts, setAccounts] = useState<string[]>([]);

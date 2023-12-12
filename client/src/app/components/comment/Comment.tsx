@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import style from './comment.module.css';
-import API_HOST from '../../../../utils/host';
 import ChangeHistoryTwoToneIcon from '@mui/icons-material/ChangeHistoryTwoTone';
 import ChangeHistoryIcon from '@mui/icons-material/ChangeHistory';
 import { useRouter } from 'next/navigation';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 interface Vote {
   userName: string;

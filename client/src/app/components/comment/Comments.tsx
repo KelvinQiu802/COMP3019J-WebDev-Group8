@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import style from './comments.module.css';
 import Comment from './Comment';
-import API_HOST from '../../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 const ORDER = {
   POPULAR: 'popular',

@@ -5,9 +5,10 @@ import MovieInfo from '../../components/movie/MovieInfo';
 import style from './page.module.css';
 import YourScore from '../../components/movie/YourScore';
 import BookmarksBtn from '../../components/BookmarksBtn';
-import API_HOST from '../../../../utils/host';
 import Comments from '../../components/comment/Comments';
 import TextArea from '../../components/comment/TextArea';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 async function getBookmarks(userName: string) {
   const result = await fetch(`${API_HOST}/bookmarks/${userName}`).then(

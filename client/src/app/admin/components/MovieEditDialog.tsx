@@ -10,7 +10,8 @@ import { Dispatch, SetStateAction } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Id } from 'react-toastify';
 import style from './edit.module.css';
-import API_HOST from '../../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 interface Props {
   openEdit: boolean;

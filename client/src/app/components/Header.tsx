@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import style from './header.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import API_HOST from '../../../utils/host';
+
+const API_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
 /* Header component definition */
 function Header() {
