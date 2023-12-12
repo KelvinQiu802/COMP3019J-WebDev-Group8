@@ -28,6 +28,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" sizes="any" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <title>Duck Movie</title>
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
